@@ -1,4 +1,0 @@
-08000050 t _reset
-20000000 B i
-0800005c T main
-08000058 t Vector_handler
