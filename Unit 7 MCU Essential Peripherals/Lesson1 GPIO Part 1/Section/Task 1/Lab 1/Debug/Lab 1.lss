@@ -1,0 +1,186 @@
+
+Lab 1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000f4  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000148  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  00000148  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000178  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000020  00000000  00000000  000001b4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000626  00000000  00000000  000001d4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000586  00000000  00000000  000007fa  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000028e  00000000  00000000  00000d80  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000024  00000000  00000000  00001010  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000002f9  00000000  00000000  00001034  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000144  00000000  00000000  0000132d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000030  00000000  00000000  00001471  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 36 00 	call	0x6c	; 0x6c <main>
+  64:	0c 94 78 00 	jmp	0xf0	; 0xf0 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <main>:
+#include "Utils.h"
+#include "avr/delay.h"
+
+int main(void)
+{
+	int i=5;
+  6c:	85 e0       	ldi	r24, 0x05	; 5
+  6e:	90 e0       	ldi	r25, 0x00	; 0
+    {
+		
+		DDRD |= (0b111<<5); 
+		for (i ; i<8 ; i++)
+		{
+			SetBit(PORTD,i);
+  70:	61 e0       	ldi	r22, 0x01	; 1
+  72:	70 e0       	ldi	r23, 0x00	; 0
+	int i=5;
+    /* Replace with your application code */
+    while (1) 
+    {
+		
+		DDRD |= (0b111<<5); 
+  74:	21 b3       	in	r18, 0x11	; 17
+  76:	20 6e       	ori	r18, 0xE0	; 224
+  78:	21 bb       	out	0x11, r18	; 17
+		for (i ; i<8 ; i++)
+  7a:	88 30       	cpi	r24, 0x08	; 8
+  7c:	91 05       	cpc	r25, r1
+  7e:	bc f4       	brge	.+46     	; 0xae <main+0x42>
+		{
+			SetBit(PORTD,i);
+  80:	42 b3       	in	r20, 0x12	; 18
+  82:	9b 01       	movw	r18, r22
+  84:	08 2e       	mov	r0, r24
+  86:	02 c0       	rjmp	.+4      	; 0x8c <main+0x20>
+  88:	22 0f       	add	r18, r18
+  8a:	33 1f       	adc	r19, r19
+  8c:	0a 94       	dec	r0
+  8e:	e2 f7       	brpl	.-8      	; 0x88 <main+0x1c>
+  90:	24 2b       	or	r18, r20
+  92:	22 bb       	out	0x12, r18	; 18
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  94:	2f ef       	ldi	r18, 0xFF	; 255
+  96:	32 e5       	ldi	r19, 0x52	; 82
+  98:	47 e0       	ldi	r20, 0x07	; 7
+  9a:	21 50       	subi	r18, 0x01	; 1
+  9c:	30 40       	sbci	r19, 0x00	; 0
+  9e:	40 40       	sbci	r20, 0x00	; 0
+  a0:	e1 f7       	brne	.-8      	; 0x9a <main+0x2e>
+  a2:	00 c0       	rjmp	.+0      	; 0xa4 <main+0x38>
+  a4:	00 00       	nop
+    /* Replace with your application code */
+    while (1) 
+    {
+		
+		DDRD |= (0b111<<5); 
+		for (i ; i<8 ; i++)
+  a6:	01 96       	adiw	r24, 0x01	; 1
+  a8:	88 30       	cpi	r24, 0x08	; 8
+  aa:	91 05       	cpc	r25, r1
+  ac:	49 f7       	brne	.-46     	; 0x80 <main+0x14>
+			SetBit(PORTD,i);
+			_delay_ms(300);
+		}
+		for (i=7 ; i>=5 ; i--)
+		{
+			ResetBit(PORTD,i);
+  ae:	97 98       	cbi	0x12, 7	; 18
+  b0:	8f ef       	ldi	r24, 0xFF	; 255
+  b2:	92 e5       	ldi	r25, 0x52	; 82
+  b4:	27 e0       	ldi	r18, 0x07	; 7
+  b6:	81 50       	subi	r24, 0x01	; 1
+  b8:	90 40       	sbci	r25, 0x00	; 0
+  ba:	20 40       	sbci	r18, 0x00	; 0
+  bc:	e1 f7       	brne	.-8      	; 0xb6 <main+0x4a>
+  be:	00 c0       	rjmp	.+0      	; 0xc0 <main+0x54>
+  c0:	00 00       	nop
+  c2:	96 98       	cbi	0x12, 6	; 18
+  c4:	3f ef       	ldi	r19, 0xFF	; 255
+  c6:	42 e5       	ldi	r20, 0x52	; 82
+  c8:	87 e0       	ldi	r24, 0x07	; 7
+  ca:	31 50       	subi	r19, 0x01	; 1
+  cc:	40 40       	sbci	r20, 0x00	; 0
+  ce:	80 40       	sbci	r24, 0x00	; 0
+  d0:	e1 f7       	brne	.-8      	; 0xca <main+0x5e>
+  d2:	00 c0       	rjmp	.+0      	; 0xd4 <main+0x68>
+  d4:	00 00       	nop
+  d6:	95 98       	cbi	0x12, 5	; 18
+  d8:	9f ef       	ldi	r25, 0xFF	; 255
+  da:	22 e5       	ldi	r18, 0x52	; 82
+  dc:	37 e0       	ldi	r19, 0x07	; 7
+  de:	91 50       	subi	r25, 0x01	; 1
+  e0:	20 40       	sbci	r18, 0x00	; 0
+  e2:	30 40       	sbci	r19, 0x00	; 0
+  e4:	e1 f7       	brne	.-8      	; 0xde <main+0x72>
+  e6:	00 c0       	rjmp	.+0      	; 0xe8 <main+0x7c>
+  e8:	00 00       	nop
+		for (i ; i<8 ; i++)
+		{
+			SetBit(PORTD,i);
+			_delay_ms(300);
+		}
+		for (i=7 ; i>=5 ; i--)
+  ea:	84 e0       	ldi	r24, 0x04	; 4
+  ec:	90 e0       	ldi	r25, 0x00	; 0
+  ee:	c2 cf       	rjmp	.-124    	; 0x74 <main+0x8>
+
+000000f0 <_exit>:
+  f0:	f8 94       	cli
+
+000000f2 <__stop_program>:
+  f2:	ff cf       	rjmp	.-2      	; 0xf2 <__stop_program>
