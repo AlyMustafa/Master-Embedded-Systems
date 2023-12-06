@@ -10,9 +10,13 @@
 //-----------------------------
 //Includes
 //-----------------------------
-#include "stdio.h"
-//#include "stdint.h"
+//#include "stdio.h"
+
 #include "Platform_Types.h"
+#include "RCC.h"
+#include "NVIC.h"
+
+
 
 
 //-*-*-*-*-*-*-*-*-*-*-*--*-*-*-*-*-*-*-*-*-*-*--*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
@@ -128,24 +132,24 @@ typedef struct
 {
 	vuint32_t CR1;
 	vuint32_t CR2;
-	vuint32_t TIMx_SMCR;
+	vuint32_t SMCR;
 	vuint32_t DIER;
 	vuint32_t SR;
 	vuint32_t EGR;
-	vuint32_t TIMx_CCMR1;
-	vuint32_t TIMx_CCMR2;
-	vuint32_t TIMx_CCER;
+	vuint32_t CCMR1;
+	vuint32_t CCMR2;
+	vuint32_t CCER;
 	vuint32_t CNT;
 	vuint32_t PSC;
 	vuint32_t ARR;
-	vuint32_t TIMx_RCR;
-	vuint32_t TIMx_CCR1;
-	vuint32_t TIMx_CCR2;
-	vuint32_t TIMx_CCR3;
-	vuint32_t TIMx_CCR4;
-	vuint32_t TIMx_BDTR;
-	vuint32_t TIMx_DCR;
-	vuint32_t TIMx_DMAR;
+	vuint32_t RCR;
+	vuint32_t CCR1;
+	vuint32_t CCR2;
+	vuint32_t CCR3;
+	vuint32_t CCR4;
+	vuint32_t BDTR;
+	vuint32_t DCR;
+	vuint32_t DMAR;
 }TIM_t;
 
 
@@ -176,61 +180,4 @@ typedef struct
 #define TIM2 	((TIM_t*)TIM2_BASE)
 #define TIM3 	((TIM_t*)TIM3_BASE)
 #define TIM4 	((TIM_t*)TIM4_BASE)
-
-//-*-*-*-*-*-*-*-*-*-*-*-
-//Generic Macros:
-//-*-*-*-*-*-*-*-*-*-*-*
-
-//-*-*-*-*-*-*-*-*-*-*-*-
-//IVT
-//-*-*-*-*-*-*-*-*-*-*-*
-//EXTI							//Interrupt Request to NVIC
-#define  EXTI0_IRQ				6
-#define  EXTI1_IRQ				7
-#define  EXTI2_IRQ 				8
-#define  EXTI3_IRQ 				9
-#define  EXTI4_IRQ 				10
-#define  EXTI5_IRQ 				23
-#define  EXTI6_IRQ 				23
-#define  EXTI7_IRQ 				23
-#define  EXTI8_IRQ 				23
-#define  EXTI9_IRQ 				23
-#define  EXTI10_IRQ 			40
-#define  EXTI11_IRQ 			40
-#define  EXTI12_IRQ 			40
-#define  EXTI13_IRQ 			40
-#define  EXTI14_IRQ 			40
-#define  EXTI15_IRQ 			40
-
-//NVIC Enable & Disable
-//Enable
-//EXTI Interrupt
-#define NVIC_IRQ6_EXTI0_Enable   			NVIC_ISER0 |= (1<<6 )
-#define NVIC_IRQ7_EXTI1_Enable    			NVIC_ISER0 |= (1<<7 )
-#define NVIC_IRQ8_EXTI2_Enable   			NVIC_ISER0 |= (1<<8 )
-#define NVIC_IRQ9_EXTI3_Enable    			NVIC_ISER0 |= (1<<9 )
-#define NVIC_IRQ10_EXTI4_Enable    			NVIC_ISER0 |= (1<<10)
-#define NVIC_IRQ23_EXTI5_9_Enable    		NVIC_ISER0 |= (1<<23)
-#define NVIC_IRQ40_EXTI10_15_Enable   		NVIC_ISER1 |= (1<<8 ) //40-32=8
-//TIMER 1,2,3,4 //Edit for M4//
-#define NVIC_IRQ25_TIM1_Enable   			NVIC_ISER0 |= (1<<25 )
-#define NVIC_IRQ28_TIM2_Enable    			NVIC_ISER0 |= (1<<28 )
-#define NVIC_IRQ29_TIM3_Enable   			NVIC_ISER0 |= (1<<29 )
-#define NVIC_IRQ30_TIM4_Enable    			NVIC_ISER0 |= (1<<30 )
-
-//Disable
-//EXTI Interrupt
-#define NVIC_IRQ6_EXTI0_Disable   			NVIC_ICER0 |= (1<<6 )
-#define NVIC_IRQ7_EXTI1_Disable    			NVIC_ICER0 |= (1<<7 )
-#define NVIC_IRQ8_EXTI2_Disable   			NVIC_ICER0 |= (1<<8 )
-#define NVIC_IRQ9_EXTI3_Disable    			NVIC_ICER0 |= (1<<9 )
-#define NVIC_IRQ10_EXTI4_Disable    		NVIC_ICER0 |= (1<<10)
-#define NVIC_IRQ23_EXTI5_9_Disable   		NVIC_ICER0 |= (1<<23)
-#define NVIC_IRQ40_EXTI10_15_Disable   		NVIC_ICER1 |= (1<<8 ) //40-32=8
-//TIM 1,2,3,4
-#define NVIC_IRQ25_TIM1_Disable  			NVIC_ICER0 |= (1<<25 )
-#define NVIC_IRQ28_TIM2_Disable   			NVIC_ICER0 |= (1<<28 )
-#define NVIC_IRQ29_TIM3_Disable   			NVIC_ICER0 |= (1<<29 )
-#define NVIC_IRQ30_TIM4_Disable   			NVIC_ICER0 |= (1<<30 )
-
 #endif /* INC_STM32F103X6_H_ */
