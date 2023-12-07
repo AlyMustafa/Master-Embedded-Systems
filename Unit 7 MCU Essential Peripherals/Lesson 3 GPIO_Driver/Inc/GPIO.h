@@ -2,7 +2,7 @@
  * Stm32f103c6_GPIO_driver.h
  *
  *  Created on: Sep 15, 2023
- *      Author: Ali Mustafa
+ *      Author: Metro
  */
 
 #ifndef INC_STM32F103C6_GPIO_DRIVER_H_
@@ -12,8 +12,8 @@
 //-----------------------------
 //Includes
 //-----------------------------
+
 #include "STM32F103x6.h"
-#include "RCC.h"
 
 
 //-----------------------------
@@ -89,9 +89,10 @@ typedef struct {
 10: Output mode, max speed 2 MHz.
 11: Output mode, max speed 50 MHz.
  */
-#define GPIO_SPEED_10M  				((uint8_t)0x0001) //max speed 10 MHz.
-#define GPIO_SPEED_2M  					((uint8_t)0x0002) //max speed 2 MHz.
-#define GPIO_SPEED_50M  				((uint8_t)0x0003)//max speed 50 MHz.
+#define GPIO_INPUT 						((uint8_t)0x0) 		//GENERAL.
+#define GPIO_SPEED_10M  				((uint8_t)0x0001) 	//max speed 10 MHz.
+#define GPIO_SPEED_2M  					((uint8_t)0x0002) 	//max speed 2 MHz.
+#define GPIO_SPEED_50M  				((uint8_t)0x0003)	//max speed 50 MHz.
 
 //@ref GPIO_PIN_state
 #define GPIO_PIN_SET		1
