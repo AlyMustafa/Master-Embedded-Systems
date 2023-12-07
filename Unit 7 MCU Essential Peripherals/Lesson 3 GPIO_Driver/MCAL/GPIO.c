@@ -89,7 +89,6 @@ uint16_t GetPinPostion(uint16_t Pin_Number)
 void MCAL_GPIO_Init (GPIO_t* GPIOx , GPIO_config_t* PinConfig)	{
 	//Port configuration register low (GPIOx_CRL) from 0>>>7
 	//Port configuration register low (GPIOx_CRH) from 8>>>15
-
 	volatile uint32_t* configregister = NULL;
 	uint8_t pin_config = 0;
 
@@ -119,7 +118,7 @@ void MCAL_GPIO_Init (GPIO_t* GPIOx , GPIO_config_t* PinConfig)	{
 			{
 				GPIOx->ODR &= PinConfig->GPIO_PinNumber;
 			}
-			pin_config = ( (((PinConfig -> GPIO_MODE ) << 2) | 0x0 ) & 0xF);
+			pin_config = ( (((PinConfig -> GPIO_MODE ) << 2) | GPIO_INPUT ) & 0xF);
 			(*configregister) |= ( (pin_config) << ( GetPinPostion (PinConfig->GPIO_PinNumber) ) );
 		}
 	}
