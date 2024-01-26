@@ -8,7 +8,7 @@
 #define STM32F103C6_EXTI_DRIVER_H_
 //includes
 #include "STM32F103x6.h"
-#include "stm32f103c6_GPIO.h"
+#include "GPIO.h"
 #include "RCC.h"
 #include "NVIC.h"
 
