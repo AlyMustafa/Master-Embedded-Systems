@@ -10,8 +10,6 @@
 //-----------------------------
 //Includes
 //-----------------------------
-//#include "stdio.h"
-
 #include "Platform_Types.h"
 #include "RCC.h"
 #include "NVIC.h"
