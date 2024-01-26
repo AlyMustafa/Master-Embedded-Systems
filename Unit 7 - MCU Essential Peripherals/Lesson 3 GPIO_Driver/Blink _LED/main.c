@@ -12,11 +12,10 @@
 #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
 
-//#include "../Stm32_F103C6_Drivers/inc/STM32F103x6.h"
-//#include "../Stm32_F103C6_Drivers/inc/Stm32f103c6_GPIO_driver.h"
+
 #include "STM32F103x6.h"
-#include "stm32f103c6_GPIO.h"
-#include "stm32f103c6_EXTI.h"
+#include "GPIO.h"
+
 
 void wait_ms(int x){
 
