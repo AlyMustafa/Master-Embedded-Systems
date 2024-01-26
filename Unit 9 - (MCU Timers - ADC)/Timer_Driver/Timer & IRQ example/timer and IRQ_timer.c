@@ -4,8 +4,8 @@
 #endif
 
 #include "STM32F103x6.h"
-#include "stm32f103c6_GPIO.h"
-#include "stm32f103c6_TIM.h"
+#include "GPIO.h"
+#include "TIM.h"
 
 void TIM1_CallBack(void);
 int main(void)
