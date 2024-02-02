@@ -4,7 +4,7 @@
  *  Created on: Sep 15, 2023
  *      Author: Aly Enaya
  */
-#include "stm32f103c6_GPIO.h"
+#include "GPIO.h"
 uint16_t GetPinPostion(uint16_t Pin_Number)
 {
 	switch (Pin_Number)

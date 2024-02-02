@@ -12,19 +12,14 @@
 #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
 
-//#include "../Stm32_F103C6_Drivers/inc/STM32F103x6.h"
-//#include "../Stm32_F103C6_Drivers/inc/Stm32f103c6_GPIO_driver.h"
 #include "STM32F103x6.h"
-#include "stm32f103c6_GPIO.h"
-#include "stm32f103c6_EXTI.h"
-//int flag=0;
+#include "GPIO.h"
+#include "EXTI.h"
 
-
-void EXT0_CallBack(){
+void EXT0_CallBack() //Call Back Fn
+{
 	Led_on();
-
 }
-
 
 void wait_ms(int x){
 
@@ -55,19 +50,17 @@ int main(void)
 	RCC_GPIOB_CLK_EN();
 	RCC_AFIO_CLK_EN();
 
-	GPIO_config_t x1 =  {GPIO_PIN_0 , GPIO_MODE_INPUT_FLO ,GPIO_SPEED_10M };
-	GPIO_config_t x2 =  {GPIO_PIN_1 , GPIO_MODE_OUTPUT_PP ,GPIO_SPEED_10M };
-	GPIO_config_t x3 =  {GPIO_PIN_2 , GPIO_MODE_OUTPUT_PP ,GPIO_SPEED_10M };
-	GPIO_config_t x4 =  {GPIO_PIN_3 , GPIO_MODE_OUTPUT_PP ,GPIO_SPEED_10M };
+	GPIO_config_t PA1 =  {GPIO_PIN_1 , GPIO_MODE_OUTPUT_PP ,GPIO_SPEED_10M };
+	GPIO_config_t PA2 =  {GPIO_PIN_2 , GPIO_MODE_OUTPUT_PP ,GPIO_SPEED_10M };
+	GPIO_config_t PA3 =  {GPIO_PIN_3 , GPIO_MODE_OUTPUT_PP ,GPIO_SPEED_10M };
 
-	EXTI_Config_t EXT_cfg = { EXTI0PB0, EXTI_IRQ_Enable , EXTI_Trigger_FALLING , EXT0_CallBack };
+	EXTI_Config_t EXT_cnfg = { EXTI0PB0, EXTI_IRQ_Enable , EXTI_Trigger_FALLING , EXT0_CallBack };
 
-	MCAL_EXTI_GPIO_Init (&EXT_cfg);
+	MCAL_EXTI_GPIO_Init (&EXT_cnfg);
 
-	MCAL_GPIO_Init(GPIOB, &x1);
-	MCAL_GPIO_Init(GPIOA, &x2);
-	MCAL_GPIO_Init(GPIOA, &x3);
-	MCAL_GPIO_Init(GPIOA, &x4);
+	MCAL_GPIO_Init(GPIOA, &PA1);
+	MCAL_GPIO_Init(GPIOA, &PA2);
+	MCAL_GPIO_Init(GPIOA, &PA3);
 
 	Led_off();
 	while(1)
@@ -75,8 +68,6 @@ int main(void)
 		if ( (MCAL_GPIO_ReadPin(GPIOB, GPIO_PIN_0) == 1) )
 		{
 			Led_off();
-			//flag=0;
-
 		}
 
 

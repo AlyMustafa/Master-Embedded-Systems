@@ -11,7 +11,7 @@
 //Includes
 //-----------------------------
 #include "STM32F103x6.h"
-#include "stm32f103c6_GPIO.h"
+#include "GPIO.h"
 //########################################     ENUMS     ###########################################
 enum Mode_Type {
 	none,compare,capture

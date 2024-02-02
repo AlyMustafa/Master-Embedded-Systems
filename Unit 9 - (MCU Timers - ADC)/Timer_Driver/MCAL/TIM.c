@@ -5,7 +5,7 @@
  *      Author: Ali Mustafa
  */
 
-#include "stm32f103c6_TIM.h"
+#include "TIM.h"
 //
 ///*=========>  Enable/Disable NVIC  <=========*/
 void Enable_NVIC_TIM(uint8_t timerType)
